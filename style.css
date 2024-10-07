@@ -70,6 +70,17 @@ main > section, main > article {
   background-color: var(--white);
 }
 
+/* Drop Cap */
+article p:first-of-type::first-letter {
+  font-size: 4em;      
+  font-weight: bold;   
+  float: left;         
+  margin-right: 10px;  
+  line-height: 0.8;    
+  font-family: 'Georgia', serif;  
+  color: #003b30;      
+}
+
 main > section.hero {
   height: 300px;
   background-image: url(https://picsum.photos/1920/1000);
@@ -81,6 +92,12 @@ main > section.hero {
   align-items: center;
   text-align: center;
   /* make this banner stick to the top! */
+}
+
+.hero {
+  position: sticky;  
+  top: 0;            
+  z-index: 100;      
 }
 
 section.hero > .call-to-action {
@@ -147,9 +164,36 @@ span.tooltip:focus > span {
 /* styling for tooltip bubble */
 span.tooltip span {
   display: none;
+  width: 140px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -70px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 /* styling for tooltip bubble arrow */
 span.tooltip span::after {
   content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+/* show tooltip with visibility and opacity transition */
+span.tooltip:hover > span,
+span.tooltip:focus > span {
+  visibility: visible;
+  opacity: 1;
 }
